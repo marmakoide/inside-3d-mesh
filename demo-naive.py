@@ -13,7 +13,7 @@ def is_inside(triangles, X):
 	M = triangles - X
 	M_norm = numpy.sqrt(numpy.sum(M ** 2, axis = 2))
 
-	# Acccumulate winding number per triangle
+	# Acccumulate generalized winding number per triangle
 	winding_number = 0.
 	for (A, B, C), (a, b, c) in zip(M, M_norm):
 		omega = numpy.linalg.det(numpy.array([A, B, C])) / ((a * b * c) + c * numpy.dot(A, B) + a * numpy.dot(B, C) + b * numpy.dot(C, A))

@@ -27,10 +27,10 @@ def adet(X, Y, Z):
 
 
 def is_inside(triangles, X):
-	# One winding number per input vertex
+	# One generalized winding number per input vertex
 	ret = numpy.zeros(X.shape[0])
 	
-	# Acuumulate winding number for each triangle
+	# Acuumulate generalized winding number for each triangle
 	for U, V, W in triangles:	
 		A, B, C = U - X, V - X, W - X
 		omega = adet(A, B, C)
