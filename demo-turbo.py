@@ -60,7 +60,7 @@ def main():
 	# Compute uniform distribution within the axis-aligned bound box for the mesh
 	min_corner = numpy.amin(numpy.amin(triangles, axis = 0), axis = 0)
 	max_corner = numpy.amax(numpy.amax(triangles, axis = 0), axis = 0)
-	P = (max_corner - min_corner) * numpy.random.random((4096, 3)) + min_corner
+	P = (max_corner - min_corner) * numpy.random.random((8198, 3)) + min_corner
 
 	# Filter out points which are not inside the mesh
 	P = P[is_inside(triangles, P)]
