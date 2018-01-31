@@ -70,8 +70,8 @@ approach can handles holes, non-manifold surfaces and duplicated triangles witho
 code for special case handling.
 
 The Generalized Winding Number is naturally parallel, it is the same computation
-repeated for each triangle and each point to test. This make the approach a
-natural for a vectorized, multi-core implementation or a GPU implementation.
+repeated for each triangle and each point to test. This make this approach a
+natural fit for a vectorized, multi-core implementation or a GPU implementation.
 
 ## Authors
 
