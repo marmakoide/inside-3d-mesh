@@ -1,7 +1,7 @@
 '''
 Alexandre Devert
 
-A recursive decent parser for STL files
+A recursive descent parser for STL files
 '''
 
 import re
