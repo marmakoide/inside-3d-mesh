@@ -44,6 +44,32 @@ Likewise, for the optimized implementation demo
 xzcat meshes/fox.stl.xz | python demo-turbo.py
 ```
 
+## Implementation notes
+
+The naive implementation is a straight translation of the Generalized Winding 
+Number definition. 
+
+The optimized implementation uses a couple of tricks
+
+* Vectorization : the winding number of all the points to test is accumulated 
+per triangle, using Numpy vector operations. This allows to offload most of
+the computations to compiled and optimized code.
+* The 3x3 determinant is computed explicitly, so that it can be vectorized
+and because Numpy's implementation is trading speed for robustness.
+* The arctangent is not computed, as it is not required when for an 
+inside/outside test.
+
+Using the Generalized Winding Number for a inside/outside test is not optimal.
+It takes O(n) operations for n triangles, while a raycasting approach takes 
+O(log(n)) operations when a suitable data structure such as a KD-tree. However,
+the raycasting approach usually requires more code and takes more effort to
+make it robust to degenerate cases. In contrast, the Generalized Winding Number 
+approach can handles holes, non-manifold surfaces and duplicated triangles.
+
+The Generalized Winding Number is naturally parallel, it is the same computation
+repeated for each triangle and each point to test. This make the approach a
+natural for a vectorized, multi-core implementation or a GPU implementation.
+
 ## Authors
 
 * **Alexandre Devert** - *Initial work* - [marmakoide](https://github.com/marmakoide)
