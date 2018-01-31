@@ -63,10 +63,11 @@ inside/outside test.
 
 Using the Generalized Winding Number for a inside/outside test is not optimal.
 It takes O(n) operations for n triangles, while a raycasting approach takes 
-O(log(n)) operations when a suitable data structure such as a KD-tree. However,
-the raycasting approach usually requires more code and takes more effort to
-make it robust to degenerate cases. In contrast, the Generalized Winding Number 
-approach can handles holes, non-manifold surfaces and duplicated triangles.
+O(log(n)) operations when a suitable data structure such as a KD-tree is used. 
+However, the raycasting approach usually requires more code and takes more efforts 
+to make it robust to degenerate cases. In contrast, the Generalized Winding Number 
+approach can handles holes, non-manifold surfaces and duplicated triangles without
+code for special case handling.
 
 The Generalized Winding Number is naturally parallel, it is the same computation
 repeated for each triangle and each point to test. This make the approach a
