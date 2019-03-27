@@ -58,8 +58,7 @@ per triangle, using Numpy vector operations. This allows to offload most of
 the computations to compiled and optimized code.
 * The 3x3 determinant is computed explicitly, so that it can be vectorized
 and because Numpy's implementation is trading speed for robustness.
-* The arctangent is not computed, as it is not required when for an 
-inside/outside test.
+* ~~The arctangent is not computed, as it is not required when for an inside/outside test.~~ Actually, I believe an arctangent computation can be avoided, but I'm not sure how. That would be both a gain in term of accuracy and speed.
 
 Using the Generalized Winding Number for a inside/outside test is not optimal.
 It takes O(n) operations for n triangles, while a raycasting approach takes 
