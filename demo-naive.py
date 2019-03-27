@@ -16,13 +16,10 @@ def is_inside(triangles, X):
 	# Acccumulate generalized winding number per triangle
 	winding_number = 0.
 	for (A, B, C), (a, b, c) in zip(M, M_norm):
-		omega = numpy.linalg.det(numpy.array([A, B, C])) / ((a * b * c) + c * numpy.dot(A, B) + a * numpy.dot(B, C) + b * numpy.dot(C, A))
-		winding_number += numpy.arctan(omega)
+		winding_number += numpy.arctan2(numpy.linalg.det(numpy.array([A, B, C])), (a * b * c) + c * numpy.dot(A, B) + a * numpy.dot(B, C) + b * numpy.dot(C, A))
 
 	# Job done
-	winding_number /= 2. * numpy.pi
-	return winding_number > 0.5
-
+	return winding_number >= 2. * numpy.pi
 
 
 def main():
@@ -36,11 +33,11 @@ def main():
 	# Compute uniform distribution within the axis-aligned bound box for the mesh
 	min_corner = numpy.amin(numpy.amin(triangles, axis = 0), axis = 0)
 	max_corner = numpy.amax(numpy.amax(triangles, axis = 0), axis = 0)
-	P = (max_corner - min_corner) * numpy.random.random((1024, 3)) + min_corner
+	P = (max_corner - min_corner) * numpy.random.random((4096, 3)) + min_corner
 
 	# Filter out points which are not inside the mesh
 	P = numpy.array([p for p in P if is_inside(triangles, p)])
-
+	
 	# Display the points in/out the mesh
 	fig = plot.figure()
 	ax = fig.gca(projection = '3d')

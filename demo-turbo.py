@@ -40,12 +40,11 @@ def is_inside(triangles, X):
 		k += c * numpy.sum(numpy.multiply(A, B), axis = 1)
 		k += a * numpy.sum(numpy.multiply(B, C), axis = 1)
 		k += b * numpy.sum(numpy.multiply(C, A), axis = 1)
-		omega /= k
 
-		ret += omega
+		ret += numpy.arctan2(omega, k)
 
 	# Job done
-	return ret > 0
+	return ret >= 2 * numpy.pi 
 
 
 
