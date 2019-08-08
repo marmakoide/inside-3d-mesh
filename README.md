@@ -28,9 +28,9 @@ You will need
 
 1. The actual point inside/outside mesh test is in the _is\_inside\_mesh.py_
 file. Two implementations are available : _naive_ and _turbo_.
-  * _naive_ is as straighforward and unsophisticated as I could make it, for
+    * _naive_ is as straighforward and unsophisticated as I could make it, for
 didactic purposes.
-	* _turbo_ is optimized for speed (vectorized computations) and is flexible 
+    * _turbo_ is optimized for speed (vectorized computations) and is flexible 
 about the floating point precision used for the computation.
 2. _demo-naive.py_ is a demo for the naive implementation
 3. _demo-turbo.py_ is a demo for the optimized implementation
