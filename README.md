@@ -24,6 +24,18 @@ You will need
 * [Matplotlib](https://matplotlib.org)
 * The [xz](https://en.wikipedia.org/wiki/Xz) compression suite
 
+### Code organisation
+
+1. The actual point inside/outside mesh test is in the _is\_inside\_mesh.py_
+file. Two implementations are available : _naive_ and _turbo_.
+  * _naive_ is as straighforward and unsophisticated as I could make it, for
+didactic purposes.
+	* _turbo_ is optimized for speed (vectorized computations) and is flexible 
+about the floating point precision used for the computation.
+2. _demo-naive.py_ is a demo for the naive implementation
+3. _demo-turbo.py_ is a demo for the optimized implementation
+4. _cube-test.py_ is a unit test that illustrates accuracy issues due to the _arctan2_ function.
+5. _stlparser.py_ is a parser for ASCII STL files
 
 ### Running the demos
 
@@ -49,8 +61,14 @@ xzcat meshes/fox.stl.xz | python demo-turbo.py
 ## Limitations
 
 The call to the function arctan2 is hurting the accuracy of the test. All the
-other operations could be done with hight accuracy/robustness using fancy 
+other operations could be done with high accuracy/robustness using fancy 
 summation algorithms.
+
+To enable higher accuracy with the _is\_inside\_turbo_ implementation of the 
+test, simply pass the triangles as an array with the _longdouble_ type, ie.
+128 bits floating point numbers, using the [astype](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.astype.html) method of Numpy arrays.
+
+
 
 ## Implementation notes
 
@@ -81,6 +99,10 @@ natural fit for a vectorized, multi-core implementation or a GPU implementation.
 ## Authors
 
 * **Alexandre Devert** - *Initial work* - [marmakoide](https://github.com/marmakoide)
+
+## Credits
+
+* Thanks to [Guy Rapaport](https://github.com/guy4261) to suggest the cube test case with a sample implementation
 
 ## License
 
