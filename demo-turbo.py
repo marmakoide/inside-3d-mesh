@@ -14,7 +14,7 @@ def anorm2(X):
 
 
 
-# Compute 3x3 determinnant along axis 1
+# Compute 3x3 determinant along axis 1
 def adet(X, Y, Z):
 	ret  = numpy.multiply(numpy.multiply(X[:,0], Y[:,1]), Z[:,2])
 	ret += numpy.multiply(numpy.multiply(Y[:,0], Z[:,1]), X[:,2])
