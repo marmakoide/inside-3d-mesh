@@ -25,25 +25,25 @@ def is_inside_naive(triangles, X):
 Optimized for numpy implementation of the inside/outside point mesh test
 '''
 
-# Compute euclidean norm along axis 1
-def anorm2(X):
-	return numpy.sqrt(numpy.sum(X ** 2, axis = 1))
-
-
-
-# Compute 3x3 determinant along axis 1
-def adet(X, Y, Z):
-	ret  = numpy.multiply(numpy.multiply(X[:,0], Y[:,1]), Z[:,2])
-	ret += numpy.multiply(numpy.multiply(Y[:,0], Z[:,1]), X[:,2])
-	ret += numpy.multiply(numpy.multiply(Z[:,0], X[:,1]), Y[:,2])
-	ret -= numpy.multiply(numpy.multiply(Z[:,0], Y[:,1]), X[:,2])
-	ret -= numpy.multiply(numpy.multiply(Y[:,0], X[:,1]), Z[:,2])
-	ret -= numpy.multiply(numpy.multiply(X[:,0], Z[:,1]), Y[:,2])
-	return ret
-
-
-
 def is_inside_turbo(triangles, X):
+	# Compute euclidean norm along axis 1
+	def anorm2(X):
+		return numpy.sqrt(numpy.sum(X ** 2, axis = 1))
+
+
+
+	# Compute 3x3 determinant along axis 1
+	def adet(X, Y, Z):
+		ret  = numpy.multiply(numpy.multiply(X[:,0], Y[:,1]), Z[:,2])
+		ret += numpy.multiply(numpy.multiply(Y[:,0], Z[:,1]), X[:,2])
+		ret += numpy.multiply(numpy.multiply(Z[:,0], X[:,1]), Y[:,2])
+		ret -= numpy.multiply(numpy.multiply(Z[:,0], Y[:,1]), X[:,2])
+		ret -= numpy.multiply(numpy.multiply(Y[:,0], X[:,1]), Z[:,2])
+		ret -= numpy.multiply(numpy.multiply(X[:,0], Z[:,1]), Y[:,2])
+		return ret
+
+
+
 	# One generalized winding number per input vertex
 	ret = numpy.zeros(X.shape[0])
 	
