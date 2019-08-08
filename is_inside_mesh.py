@@ -45,7 +45,7 @@ def is_inside_turbo(triangles, X):
 
 
 	# One generalized winding number per input vertex
-	ret = numpy.zeros(X.shape[0])
+	ret = numpy.zeros(X.shape[0], dtype = X.dtype)
 	
 	# Accumulate generalized winding number for each triangle
 	for U, V, W in triangles:	

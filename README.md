@@ -19,7 +19,7 @@ by Alec Jacobson, Ladislav Kavan and Olga Sorkine-Hornung.
 You will need
 
 * A Unix-ish environment
-* Python 2.7 or above
+* Python 2.7 or Python 3.x
 * [Numpy](http://www.numpy.org)
 * [Matplotlib](https://matplotlib.org)
 * The [xz](https://en.wikipedia.org/wiki/Xz) compression suite
@@ -45,6 +45,12 @@ Likewise, for the optimized implementation demo
 ```
 xzcat meshes/fox.stl.xz | python demo-turbo.py
 ```
+
+## Limitations
+
+The call to the function arctan2 is hurting the accuracy of the test. All the
+other operations could be done with hight accuracy/robustness using fancy 
+summation algorithms.
 
 ## Implementation notes
 
