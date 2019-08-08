@@ -13,7 +13,7 @@ __all__ = ['load', 'ParseError']
 
 class ParseError(Exception):
 	def __init__(self, line, value):
-		super(ParseError, self).__init__('line %d, %s' % (line, value))
+		super(ParseError, self).__init__(f'line {line}, {value}')
 		self.line = line
 		self.value = value
 
@@ -57,7 +57,7 @@ keyword_set = frozenset(['solid', 'facet', 'normal', 'outer', 'loop', 'vertex', 
 
 
 def enumerate_lexeme(in_file):
-	float_point_re = re.compile(r'[-+]?[0-9]*\.?[0-9]+(\e[-+]?[0-9]+)?')
+	float_point_re = re.compile(r'[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?')
 
 	for line_id, token in tokenize(in_file):
 		float_point_match = float_point_re.match(token)
@@ -77,7 +77,7 @@ class Parser(object):
 		self.line_id = None
 
 	def next(self):
-		line_id, token, value = self.lexer.next()
+		line_id, token, value = next(self.lexer)
 		self.line_id = line_id
 		self.lookahead = (token, value)
 
@@ -93,7 +93,7 @@ class Parser(object):
 
 	def consume(self, symbol = None):
 		if not self.accept(symbol):
-			raise ParseError(self.line_id, 'unexpected symbol "%s", excepted "%s"' % (self.lookahead[0], symbol))
+			raise ParseError(self.line_id, f'unexpected symbol "{self.lookahead[0]}", excepted "{symbol}"')
 
 	def parse_vector(self):
 		ret = numpy.zeros(3)

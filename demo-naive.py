@@ -22,12 +22,13 @@ def is_inside(triangles, X):
 	return winding_number >= 2. * numpy.pi
 
 
+
 def main():
 	# Load the input mesh as a list of triplets (ie. triangles) of 3d vertices
 	try:
 		triangles = numpy.array([X for X, N in stlparser.load(sys.stdin)])
 	except stlparser.ParseError as e:
-		sys.stderr.write('%s\n' % e)
+		sys.stderr.write(f'{e}\n')
 		sys.exit(0)
 	
 	# Compute uniform distribution within the axis-aligned bound box for the mesh
@@ -41,7 +42,6 @@ def main():
 	# Display the points in/out the mesh
 	fig = plot.figure()
 	ax = fig.gca(projection = '3d')
-	ax.set_aspect('equal')
 	ax.scatter(P[:,0], P[:,1], P[:,2], lw = 0., c = 'k')
 	plot.show()
 
