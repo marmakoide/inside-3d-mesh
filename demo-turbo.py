@@ -30,7 +30,7 @@ def is_inside(triangles, X):
 	# One generalized winding number per input vertex
 	ret = numpy.zeros(X.shape[0])
 	
-	# Acuumulate generalized winding number for each triangle
+	# Accumulate generalized winding number for each triangle
 	for U, V, W in triangles:	
 		A, B, C = U - X, V - X, W - X
 		omega = adet(A, B, C)
