@@ -2,24 +2,10 @@ import sys
 import numpy
 
 import stlparser
+from is_inside_mesh import is_inside_naive as is_inside
 
 import matplotlib.pyplot as plot
 from mpl_toolkits.mplot3d import Axes3D
-
-
-
-def is_inside(triangles, X):
-	# Compute triangle vertices and their norms relative to X
-	M = triangles - X
-	M_norm = numpy.sqrt(numpy.sum(M ** 2, axis = 2))
-
-	# Accumulate generalized winding number per triangle
-	winding_number = 0.
-	for (A, B, C), (a, b, c) in zip(M, M_norm):
-		winding_number += numpy.arctan2(numpy.linalg.det(numpy.array([A, B, C])), (a * b * c) + c * numpy.dot(A, B) + a * numpy.dot(B, C) + b * numpy.dot(C, A))
-
-	# Job done
-	return winding_number >= 2. * numpy.pi
 
 
 
